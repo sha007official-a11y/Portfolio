@@ -33,16 +33,25 @@ Before you can run this project locally, you need to install the following on yo
    ```
    *Your portfolio should now be live on `http://localhost:5000` in your browser!*
 
-## Deployment Guide
-
-You only need ONE server to run this now!
-
-### Deploying the Full Stack App (to Render or Heroku)
+### Deploying to Netlify (All-in-One)
 1. Push your full repository code to GitHub.
+2. Go to [Netlify](https://app.netlify.com/) and click **Add new site** > **Import an existing project**.
+3. Connect your GitHub repository.
+4. Netlify should automatically detect the `netlify.toml` settings:
+   - **Build command**: (Leave blank or `npm install` in root if you add a root package.json)
+   - **Publish directory**: `frontend`
+   - **Functions directory**: `backend`
+5. **Crucial**: Go to **Site Settings** > **Environment variables** and add:
+   - `MONGO_URI`: Your MongoDB Atlas connection string.
+   - `NODE_ENV`: `production`
+6. Click **Deploy site**. Your portfolio and backend API will now be hosted together on Netlify!
+
+### Alternative: Deploying Backend to Render
+If you prefer a persistent server for the backend:
+1. Push your code to GitHub.
 2. Go to [Render](https://render.com) and create a new **Web Service**.
-3. Connect your GitHub repository and build settings:
-   - **Root Directory**: `backend` (Important!)
-   - **Build Command**: `npm install`
-   - **Start Command**: `npm start`
-4. Add your Environment Variable `MONGO_URI` pointing to your MongoDB Atlas cloud cluster connection string.
-5. Click **Deploy Web Service**. Render will install Node, boot your Express server, and your single frontend HTML chunk will be perfectly served alongside your API!
+3. Set **Root Directory** to `backend`.
+4. Set **Build Command** to `npm install`.
+5. Set **Start Command** to `npm start`.
+6. Add your `MONGO_URI` in Environment Variables.
+7. Update `API_BASE` in `frontend/index.html` to point to your Render URL.

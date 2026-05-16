@@ -8,22 +8,44 @@ const Project = require('./models/Project');
 const Skill = require('./models/Skill');
 const Message = require('./models/Message');
 
+const serverless = require('serverless-http');
+
 const app = express();
 const PORT = process.env.PORT || 5000;
 
 app.use(cors());
 app.use(express.json());
 
-// Serve static frontend files
-app.use(express.static(path.join(__dirname, '../frontend')));
+// Serve static frontend files - Only needed for local development
+if (process.env.NODE_ENV !== 'production') {
+  app.use(express.static(path.join(__dirname, '../frontend')));
+}
 
-// Connect to MongoDB
-mongoose.connect(process.env.MONGO_URI || 'mongodb://127.0.0.1:27017/portfolio', {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-})
-.then(() => console.log('MongoDB connected'))
-.catch(err => console.log('MongoDB connection error:', err));
+// MongoDB Connection with Caching
+let cachedDb = null;
+const connectToDatabase = async () => {
+  if (cachedDb) return cachedDb;
+  
+  const db = await mongoose.connect(process.env.MONGO_URI || 'mongodb://127.0.0.1:27017/portfolio', {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  });
+  
+  cachedDb = db;
+  console.log('MongoDB connected');
+  return db;
+};
+
+// Middleware to ensure DB connection
+app.use(async (req, res, next) => {
+  try {
+    await connectToDatabase();
+    next();
+  } catch (err) {
+    console.error('DB Connection Error:', err);
+    res.status(500).json({ error: 'Database connection failed' });
+  }
+});
 
 // --- API Routes ---
 
@@ -68,7 +90,7 @@ app.post('/api/projects', async (req, res) => {
   }
 
   try {
-    const techArray = techStack ? techStack.split(',').map(s => s.trim()) : [];
+    const techArray = techStack ? (Array.isArray(techStack) ? techStack : techStack.split(',').map(s => s.trim())) : [];
     const newProject = new Project({ 
       title, 
       description, 
@@ -102,11 +124,17 @@ app.post('/api/contact', async (req, res) => {
   }
 });
 
-// Catch-all route to serve index.html for any other requests (useful if using client-side routing, though we aren't here)
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '../frontend/index.html'));
+// Catch-all route (optional, but keep it simple for now)
+app.get('/', (req, res) => {
+  res.json({ message: 'Portfolio API is running' });
 });
 
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-});
+// Export the handler for Netlify
+module.exports.handler = serverless(app);
+
+// Start server locally if not in serverless environment
+if (process.env.NODE_ENV !== 'production' && !process.env.NETLIFY) {
+  app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
+  });
+}
