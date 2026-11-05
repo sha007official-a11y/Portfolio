@@ -1,0 +1,26 @@
+{
+  "Programming": [
+    { "name": "Python", "proficiency": 80 },
+    { "name": "Java", "proficiency": 80 },
+    { "name": "C", "proficiency": 75 },
+    { "name": "JavaScript", "proficiency": 80 }
+  ],
+  "Web Development": [
+    { "name": "HTML5", "proficiency": 90 },
+    { "name": "CSS3", "proficiency": 85 },
+    { "name": "Vanilla JavaScript", "proficiency": 80 }
+  ],
+  "Database": [
+    { "name": "MongoDB", "proficiency": 70 },
+    { "name": "SQL", "proficiency": 75 }
+  ],
+  "AI / Development": [
+    { "name": "Artificial Intelligence", "proficiency": 75 },
+    { "name": "Generative AI", "proficiency": 75 },
+    { "name": "AI-Powered App Development", "proficiency": 70 }
+  ],
+  "Tools": [
+    { "name": "Git & GitHub", "proficiency": 80 },
+    { "name": "VS Code", "proficiency": 90 }
+  ]
+}

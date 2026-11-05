@@ -1,0 +1,64 @@
+[
+  {
+    "id": "meditwin",
+    "title": "MediTwin – AI Clinical Case-Taking System",
+    "category": "AI",
+    "filterCategories": ["all", "ai", "hackathon"],
+    "badge": "Smart India Hackathon 2026 — SIH26047",
+    "tagline": "AI-powered clinical case-taking concept for patient triage & structured summaries",
+    "description": "An AI-powered clinical case-taking concept designed to collect patient information through voice and touch, process medical documents, and generate a structured doctor-ready summary before consultation.",
+    "features": [
+      "Voice-based input & patient symptom collection",
+      "Medical document processing & OCR extraction",
+      "AI-generated summaries structured for doctor consultation",
+      "Doctor-ready clinical information & triage layout",
+      "Healthcare workflow integration concept",
+      "Smart India Hackathon 2026 project concept (SIH26047)"
+    ],
+    "technologies": ["Artificial Intelligence", "Voice Input", "OCR", "JavaScript", "HTML", "CSS"],
+    "githubUrl": "",
+    "liveUrl": "",
+    "featured": true,
+    "icon": "fa-user-doctor"
+  },
+  {
+    "id": "insightpilot",
+    "title": "InsightPilot AI",
+    "category": "AI",
+    "filterCategories": ["all", "ai", "web"],
+    "badge": "Live AI Web Application",
+    "tagline": "Intelligent web platform for automated insights & data synthesis",
+    "description": "An AI-focused web platform delivering smart automated data analysis, instant user query synthesis, and intuitive real-time insights.",
+    "features": [
+      "AI-powered query resolution & conversational processing",
+      "Automated summary generation and intelligent insights",
+      "Clean, modern responsive UI for rapid user workflows",
+      "Interactive data display and live web deployment"
+    ],
+    "technologies": ["Artificial Intelligence", "JavaScript", "HTML", "CSS", "API Integration"],
+    "githubUrl": "",
+    "liveUrl": "https://insightpilot-ai-three.vercel.app/",
+    "featured": true,
+    "icon": "fa-brain"
+  },
+  {
+    "id": "codex",
+    "title": "CODEX: THE HIDDEN PROTOCOL",
+    "category": "Web Development",
+    "filterCategories": ["all", "web", "hackathon"],
+    "badge": "Campus Technical Challenge",
+    "tagline": "Technical QR-based treasure hunt combining programming & logical challenges",
+    "description": "A technical QR-based treasure hunt experience designed for students, combining programming concepts, logical challenges, location-based clues, and timed answer validation.",
+    "features": [
+      "QR-code challenge unlocking mechanism for physical checkpoints",
+      "Programming logic puzzles & algorithmic problem sets",
+      "Team-based collaborative competitive gameplay",
+      "Timed round tracking and real-time answer validation engine"
+    ],
+    "technologies": ["HTML", "CSS", "Vanilla JavaScript", "QR Logic"],
+    "githubUrl": "",
+    "liveUrl": "",
+    "featured": false,
+    "icon": "fa-qrcode"
+  }
+]

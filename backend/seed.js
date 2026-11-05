@@ -12,67 +12,53 @@ mongoose.connect(process.env.MONGO_URI || 'mongodb://127.0.0.1:27017/portfolio',
 
 const seedProjects = [
   {
-    title: 'PORTFOLIO',
-    description: 'This is my first project',
+    title: 'MediTwin – AI Clinical Case-Taking System',
+    description: 'An AI-powered clinical case-taking concept designed to collect patient information through voice and touch, process medical documents, and generate a structured doctor-ready summary before consultation. Smart India Hackathon 2026 (SIH26047).',
+    category: 'AI',
+    featured: true,
+    techStack: ['Artificial Intelligence', 'Voice Input', 'OCR', 'JavaScript', 'HTML', 'CSS'],
+    githubUrl: '',
+    liveUrl: ''
+  },
+  {
+    title: 'InsightPilot AI',
+    description: 'An AI-focused web platform delivering smart automated data analysis, instant user query synthesis, and intuitive real-time insights.',
+    category: 'AI',
+    featured: true,
+    techStack: ['Artificial Intelligence', 'JavaScript', 'HTML', 'CSS', 'API Integration'],
+    githubUrl: '',
+    liveUrl: 'https://insightpilot-ai-three.vercel.app/'
+  },
+  {
+    title: 'CODEX: THE HIDDEN PROTOCOL',
+    description: 'A technical QR-based treasure hunt experience designed for students, combining programming concepts, logical challenges, location-based clues, and timed answer validation.',
     category: 'Web',
-    featured: true,
-    techStack: ['HTML', 'JS', 'NODE JS'],
-    githubUrl: '#',
-    liveUrl: '#'
-  },
-  {
-    title: 'E-Commerce AI Agent',
-    description: 'An AI-powered customer service agent that integrates with Shopify to answer customer queries instantly.',
-    category: 'AI/ML',
-    featured: true,
-    techStack: ['Python', 'OpenAI', 'Node.js', 'React'],
-    githubUrl: 'https://github.com',
-    liveUrl: 'https://example.com'
-  },
-  {
-    title: 'Fintech Dashboard',
-    description: 'A comprehensive financial dashboard providing real-time analytics and data visualization for enterprise clients.',
-    category: 'Web',
-    featured: true,
-    techStack: ['React', 'TypeScript', 'D3.js', 'PostgreSQL'],
-    githubUrl: 'https://github.com',
-    liveUrl: 'https://example.com'
-  },
-  {
-    title: 'Fitness Tracker App',
-    description: 'A cross-platform mobile application to track workouts and nutrition plans with offline support.',
-    category: 'Mobile',
     featured: false,
-    techStack: ['React Native', 'Firebase', 'Redux'],
-    githubUrl: 'https://github.com',
-    liveUrl: 'https://example.com'
-  },
-  {
-    title: 'Infrastructure as Code Framework',
-    description: 'A DevOps tool designed to automate AWS resource provisioning securely and efficiently.',
-    category: 'DevOps',
-    featured: false,
-    techStack: ['Terraform', 'AWS', 'Bash', 'Docker'],
-    githubUrl: 'https://github.com',
-    liveUrl: 'https://example.com'
+    techStack: ['HTML', 'CSS', 'Vanilla JavaScript', 'QR Logic'],
+    githubUrl: '',
+    liveUrl: ''
   }
 ];
 
 const seedSkills = [
-  { category: 'Frontend', name: 'React', proficiency: 95 },
-  { category: 'Frontend', name: 'TypeScript', proficiency: 90 },
-  { category: 'Frontend', name: 'Next.js', proficiency: 85 },
-  { category: 'Frontend', name: 'CSS/Tailwind', proficiency: 98 },
-  
-  { category: 'Backend', name: 'Node.js', proficiency: 92 },
-  { category: 'Backend', name: 'Python', proficiency: 88 },
-  { category: 'Backend', name: 'PostgreSQL', proficiency: 85 },
-  { category: 'Backend', name: 'GraphQL', proficiency: 80 },
+  { category: 'Programming', name: 'Python', proficiency: 80 },
+  { category: 'Programming', name: 'Java', proficiency: 80 },
+  { category: 'Programming', name: 'C', proficiency: 75 },
+  { category: 'Programming', name: 'JavaScript', proficiency: 80 },
 
-  { category: 'Tools & DevOps', name: 'Docker', proficiency: 85 },
-  { category: 'Tools & DevOps', name: 'AWS', proficiency: 75 },
-  { category: 'Tools & DevOps', name: 'Git', proficiency: 95 },
-  { category: 'Tools & DevOps', name: 'CI/CD', proficiency: 82 }
+  { category: 'Web Development', name: 'HTML5', proficiency: 90 },
+  { category: 'Web Development', name: 'CSS3', proficiency: 85 },
+  { category: 'Web Development', name: 'Vanilla JavaScript', proficiency: 80 },
+
+  { category: 'Database', name: 'MongoDB', proficiency: 70 },
+  { category: 'Database', name: 'SQL', proficiency: 75 },
+
+  { category: 'AI / Development', name: 'Artificial Intelligence', proficiency: 75 },
+  { category: 'AI / Development', name: 'Generative AI', proficiency: 75 },
+  { category: 'AI / Development', name: 'AI-Powered App Development', proficiency: 70 },
+
+  { category: 'Tools', name: 'Git & GitHub', proficiency: 80 },
+  { category: 'Tools', name: 'VS Code', proficiency: 90 }
 ];
 
 const seedDB = async () => {
@@ -83,7 +69,7 @@ const seedDB = async () => {
     await Project.insertMany(seedProjects);
     await Skill.insertMany(seedSkills);
     
-    console.log('Database seeded successfully with new Projects and Skills!');
+    console.log('Database seeded successfully with Shafeeq Ahamed S Projects and Skills!');
     process.exit(0);
   } catch (err) {
     console.error('Seeding error:', err);

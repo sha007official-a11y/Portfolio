@@ -36,8 +36,8 @@ const connectToDatabase = async () => {
   return db;
 };
 
-// Middleware to ensure DB connection
-app.use(async (req, res, next) => {
+// Middleware to ensure DB connection — only applied to API routes
+const requireDb = async (req, res, next) => {
   try {
     await connectToDatabase();
     next();
@@ -45,7 +45,9 @@ app.use(async (req, res, next) => {
     console.error('DB Connection Error:', err);
     res.status(500).json({ error: 'Database connection failed' });
   }
-});
+};
+
+app.use('/api', requireDb);
 
 // --- API Routes ---
 
@@ -124,10 +126,12 @@ app.post('/api/contact', async (req, res) => {
   }
 });
 
-// Catch-all route (optional, but keep it simple for now)
-app.get('/', (req, res) => {
-  res.json({ message: 'Portfolio API is running' });
-});
+// Serve index.html for all non-API routes in development (SPA fallback)
+if (process.env.NODE_ENV !== 'production') {
+  app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, '../frontend/index.html'));
+  });
+}
 
 // Export the handler for Netlify
 module.exports.handler = serverless(app);
